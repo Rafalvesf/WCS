@@ -114,48 +114,13 @@ function submitQuiz() {
     });
 }
 
-// Function to submit quiz responses to Google Sheets
-function submitQuiz() {
-    const formData = new URLSearchParams();
-
-    // Collect responses from the form fields
-    responses['feedback'] = document.getElementById('feedback').value;
-    responses['scenarios'] = document.getElementById('scenarios').value;
-    responses['newsletterEmail'] = document.getElementById('newsletterEmail').value;
-
-    // Add each response to the formData
-    for (const [key, value] of Object.entries(responses)) {
-        formData.append(key, value);
-    }
-
-    // Disable the Finish Button to Prevent Multiple Submissions
-    document.getElementById('finishBtn').disabled = true;
-
-    fetch(googleSheetUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString() // Convert to proper form encoding
-    })
-    .then(response => response.text())
-    .then(result => {
-        console.log('Success:', result);
-        alert('Quiz completed and data sent to Google Sheets!');
-        document.getElementById('finishBtn').disabled = false; // Re-enable after successful submission
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-// Function to send only the newsletter email
+// Function to send only the email address for newsletter subscription to Google Sheets
 function subscribeNewsletter() {
-    const email = document.getElementById('newsletterEmail').value.trim();
+    const email = newsletterEmail.value.trim();
 
     if (email) {
         // Disable the Subscribe Button to Prevent Multiple Submissions
-        document.getElementById('subscribeBtn').disabled = true;
+        subscribeBtn.disabled = true;
 
         const formData = new URLSearchParams();
         formData.append("newsletterEmail", email); // Add email to formData
@@ -165,22 +130,31 @@ function subscribeNewsletter() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: formData.toString()
+            body: formData.toString() // Convert to proper form encoding
         })
         .then(response => response.text())
         .then(result => {
             console.log('Newsletter Success:', result);
             alert('Thank you for subscribing to our newsletter!');
-            document.getElementById('subscribeBtn').disabled = false; // Re-enable after submission
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            subscribeBtn.disabled = false; // Re-enable after successful submission
+            showThankYouPage(); // Show the thank you page
         });
     } else {
         alert("Please enter a valid email.");
     }
 }
 
-// Add event listeners
-document.getElementById('finishBtn').addEventListener('click', submitQuiz);
-document.getElementById('subscribeBtn').addEventListener('click', subscribeNewsletter);
+// Modify the finish button click to call submitQuiz
+finishBtn.addEventListener('click', submitQuiz);
+
+// Subscribe button handler to send only the email address
+subscribeBtn.addEventListener('click', subscribeNewsletter);
+
+// Close button handler to skip email sign-up and go to the thank you page
+closeSignup.addEventListener('click', showThankYouPage);
+
+// Function to show the thank you page
+function showThankYouPage() {
+    emailSignup.style.display = "none";
+    thankYouPage.style.display = "block";
+}

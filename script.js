@@ -111,36 +111,45 @@ function submitQuiz() {
         document.querySelector('.navigation').style.display = "none"; // Hide all navigation buttons
         questions[currentQuestionIndex].style.display = "none"; // Hide quiz
         emailSignup.style.display = "block"; // Show email sign-up
+
     });
 }
 
-// Function to send only the email address for newsletter subscription to Google Sheets
-function subscribeNewsletter() {
+// Function to submit the email to Google Sheets
+function submitEmail() {
+    const formData = new URLSearchParams();
     const email = newsletterEmail.value.trim();
 
     if (email) {
-        // Disable the Subscribe Button to Prevent Multiple Submissions
-        subscribeBtn.disabled = true;
+        // Add the email to formData
+        formData.append("newsletterEmail", email);
 
-        const formData = new URLSearchParams();
-        formData.append("newsletterEmail", email); // Add email to formData
+        // Disable the Subscribe button to prevent multiple submissions
+        subscribeBtn.disabled = true;
 
         fetch(googleSheetUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: formData.toString() // Convert to proper form encoding
+            body: formData.toString() // Convert formData to proper encoding
         })
         .then(response => response.text())
         .then(result => {
-            console.log('Newsletter Success:', result);
-            alert('Thank you for subscribing to our newsletter!');
+            console.log('Success:', result);
+            alert('Subscription successful! Thank you for signing up.');
             subscribeBtn.disabled = false; // Re-enable after successful submission
-            showThankYouPage(); // Show the thank you page
+
+            // Optionally, you can proceed to the thank you page or any other action
+            showThankYouPage(); // Show thank-you page after email submission
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("There was an issue with your subscription. Please try again.");
+            subscribeBtn.disabled = false;
         });
     } else {
-        alert("Please enter a valid email.");
+        alert("Please enter a valid email address.");
     }
 }
 
@@ -149,12 +158,3 @@ finishBtn.addEventListener('click', submitQuiz);
 
 // Subscribe button handler to send only the email address
 subscribeBtn.addEventListener('click', subscribeNewsletter);
-
-// Close button handler to skip email sign-up and go to the thank you page
-closeSignup.addEventListener('click', showThankYouPage);
-
-// Function to show the thank you page
-function showThankYouPage() {
-    emailSignup.style.display = "none";
-    thankYouPage.style.display = "block";
-}

@@ -242,7 +242,7 @@ button:disabled {
     height: calc(var(--vh, 1vh) * 100);
 }
 
-@media (max-height: 1000px) {
+@media (max-height: 800px) {
 
     .quiz-container {
         padding: 25px;

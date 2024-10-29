@@ -196,6 +196,14 @@ setViewportHeight();
 // Recalculate on resize (when the address bar shows/hides)
 window.addEventListener('resize', setViewportHeight);
 
+function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Calculate on load and on resize
+window.addEventListener('load', setViewportHeight);
+window.addEventListener('resize', setViewportHeight);
 
 // Function to submit the email to Google Sheets
 function submitEmail() {

@@ -15,15 +15,14 @@ body, html {
 
 .quiz-container {
     background-color: #211A1D;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     width: 90%;
     max-width: 500px;
-    max-height: 1600px;
+    max-height: 1000px;
     text-align: center;
     padding-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 h2 {
@@ -216,7 +215,7 @@ button:disabled {
 }
 
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
 
     .quiz-container {
         padding-top: 25px;

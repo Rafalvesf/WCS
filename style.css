@@ -129,7 +129,7 @@ h2 {
     font-weight: 400;
     font-style: normal;
     justify-content: space-between;
-    margin-top: 0;
+    margin-top: 25px;
     text-align: center;
     font-optical-sizing: auto;
     border: 0px solid #000000;
@@ -296,6 +296,10 @@ button:disabled {
     .answer-btn {
         font-size: 18px;
         font-weight: 400;
+    }
+
+    .navigationstart-btn {
+        margin-top: 15px;
     }
 }
 

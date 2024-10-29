@@ -282,6 +282,7 @@ button:disabled {
 
     .question p {
         font-size: 1.35rem;
+        margin-bottom: 20px
     }
 
     .answer-btn {

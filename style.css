@@ -23,6 +23,7 @@ body, html {
     max-height: 1600px;
     text-align: center;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 h2 {
@@ -218,6 +219,7 @@ button:disabled {
 @media (max-width: 1400px) {
 
     .quiz-container {
+        padding-top: 25px;
         padding: 25px;
         height: auto;
         width: auto;

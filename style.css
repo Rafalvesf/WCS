@@ -246,6 +246,7 @@ button:disabled {
 @media (max-height: 800px) {
 
     .quiz-container {
+        padding-top: 32px;
         padding: 25px;
         height: auto;
         width: auto;

@@ -8,7 +8,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     margin: 20px;
     padding: 0;
 }
@@ -16,11 +16,11 @@ body, html {
 .quiz-container {
     background-color: #211A1D;
     border-radius: 8px;
-    padding: 25px;
+    padding: 30px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     width: 90%;
-    max-width: 500px;
-    max-height: auto;
+    max-width: 550px;
+    max-height: 700px;
     text-align: center;
     padding-bottom: 10px;
     padding-top: 20px;
@@ -76,7 +76,7 @@ h2 {
 .question.active p {
     font-family: "Lexend", serif;
     font-optical-sizing: auto;
-    font-weight: 420;
+    font-weight: 450px;
     font-size: 1.2rem;
     margin: 20px;
 }
@@ -264,15 +264,15 @@ button:disabled {
 
 /* Use the calculated viewport height instead of 100vh */
 .full-height {
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--vh, 1vh) * 85);
 }
 
-@media (max-height: auto) {
+@media (max-height: 700px) {
 
     .quiz-container {
         padding-top: 35px;
         padding: 25px;
-        height: auto;
+        height: 700px;
         width: auto;
     }
 

@@ -166,7 +166,7 @@ document.querySelectorAll('.navigation #nextBtn').forEach((btn) => {
 // Handle "Finish" button submission
 finishBtn?.addEventListener('click', () => {
     // You can add final submission logic here if needed
-    alert("Thank you for completing the quiz!");
+    alert("");
 });
 
 // Add event listeners for selecting an answer

@@ -1,7 +1,9 @@
 let currentQuestionIndex = 0;
 const questions = document.querySelectorAll('.question');
-const nextBtns = document.querySelectorAll('#nextBtn');  // Selecting all next buttons
+const nextBtn = document.querySelectorAll('#nextBtn');  // Selecting all next buttons
 const prevBtn = document.querySelectorAll('#prevBtn');  // Selecting all next buttons
+const nextBtns = document.querySelectorAll('.navigation #nextBtn');  // Selects each next button within navigation divs
+const prevBtns = document.querySelectorAll('.navigation #prevBtn');  // Selects each prev button if implemented
 const finishBtn = document.getElementById('finishBtn');
 const emailSignup = document.getElementById('emailSignup');
 const thankYouPage = document.getElementById('thankYouPage');
@@ -35,36 +37,6 @@ function showQuestion(index) {
         finishBtn.style.display = 'none';
     }
 }
-    // Event listeners for "Next" buttons
-    nextBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            showQuestion(currentQuestionIndex);
-        }
-    });
-});
-    prevBtn.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                showQuestion(currentQuestionIndex);
-            }
-        });
-});
-
-finishBtn.addEventListener('click', () => {
-    // Hide questions and show email sign-up
-    document.querySelector('.navigation').style.display = "none";
-    questions[currentQuestion].style.display = "none";
-    emailSignup.style.display = "block";
-    btn.addEventListener('click', () => {
-        if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            showQuestion(currentQuestionIndex);
-        }
-    });
-});
 
 // Event listener for the "Finish" button
 finishBtn.addEventListener('click', () => {
@@ -115,6 +87,104 @@ function submitQuiz() {
     });
 }
 
+function checkAnswer(button, userAnswer) {
+    const correctAnswer = '~141 Kg';  // Set the correct answer here
+    const feedbackMessage = document.getElementById("feedbackMessage");
+    const buttons = button.parentElement.querySelectorAll(".answer-btn");
+
+    // Disable all buttons after selection
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    // Check if the selected answer is correct
+    if (userAnswer === correctAnswer) {
+        // If the selected answer is correct
+        button.style.backgroundColor = "green";  // Turn selected button green
+        feedbackMessage.textContent = "Correct!";
+        feedbackMessage.style.color = "white";
+    } else {
+        // If the selected answer is incorrect
+        button.style.backgroundColor = "red";  // Turn selected button red
+        feedbackMessage.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
+        feedbackMessage.style.color = "white";
+        
+        // Highlight the correct answer in green
+        buttons.forEach(btn => {
+            if (btn.textContent === correctAnswer) {
+                btn.style.backgroundColor = "green";
+            }
+        });
+    }
+}
+
+// Function to display only the current question
+function showQuestion(index) {
+    questions.forEach((question, idx) => {
+        question.classList.toggle('active', idx === index);
+    });
+}
+
+// Display the first question (intro or other)
+showQuestion(currentQuestionIndex);
+
+// Handle "Next" button for all questions
+document.querySelectorAll('.navigation #nextBtn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const currentQuestion = questions[currentQuestionIndex];
+        const feedbackMessage = currentQuestion.querySelector('.feedbackMessage');
+        
+        // If current question is "intro", skip answer requirement
+        if (currentQuestion.id === "intro") {
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex);
+            return;
+        }
+
+        // Check if an answer has been selected
+        const selectedAnswer = currentQuestion.querySelector('.answer-btn.selected');
+        
+        if (selectedAnswer) {
+            // Clear feedback and advance if answered
+            feedbackMessage.textContent = "";
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex);
+        } else {
+            // Show feedback and shake if no answer is selected
+            feedbackMessage.textContent = "Please select an answer before proceeding.";
+            feedbackMessage.style.color = "red";
+            currentQuestion.classList.add('shake');
+
+            // Remove shake animation after a short delay
+            setTimeout(() => {
+                currentQuestion.classList.remove('shake');
+            }, 300);
+        }
+    });
+});
+
+// Handle "Finish" button submission
+finishBtn?.addEventListener('click', () => {
+    // You can add final submission logic here if needed
+    alert("Thank you for completing the quiz!");
+});
+
+// Add event listeners for selecting an answer
+document.querySelectorAll('.answer-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const question = button.closest('.question');
+        const feedbackMessage = question.querySelector('.feedbackMessage');
+        
+        // Clear feedback message when an answer is selected
+        feedbackMessage.textContent = "";
+        
+        // Mark the selected answer and remove the selection from others
+        question.querySelectorAll('.answer-btn').forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+    });
+});
+
+
 // Function to submit the email to Google Sheets
 function submitEmail() {
     const formData = new URLSearchParams();
@@ -151,6 +221,11 @@ function submitEmail() {
     } else {
         alert("Please enter a valid email address.");
     }
+}
+
+function showThankYouPage() {
+    emailSignup.style.display = "none";
+    thankYouPage.style.display = "block";
 }
 
 // Modify the finish button click to call submitQuiz

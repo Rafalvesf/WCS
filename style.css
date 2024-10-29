@@ -35,7 +35,7 @@ h2 {
     color: #CAD5CA;
     font-weight: bold;
     font-size: 2rem;
-    margin-bottom: -12px;
+    margin-bottom: 20px;
 }
 
 .question {
@@ -73,7 +73,7 @@ h2 {
 .answer-btn {
     font-family: "Lexend", serif;
     font-optical-sizing: auto;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     font-style: normal;
     color: #000000;
@@ -82,7 +82,7 @@ h2 {
     border-radius: 5px;
     padding: 10px;
     margin: 5px 0;
-    font-size: 1.5rem;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
@@ -91,6 +91,12 @@ h2 {
 
 .answer-btn:hover {
     background-color: #FF6666;
+    color: white;
+}
+
+.navigation-btn:hover {
+    background-color: #FF6666;
+    color: #000000;
 }
 
 .answer-btn:focus {
@@ -108,10 +114,11 @@ h2 {
     font-optical-sizing: auto;
     border: 0px solid #000000;
     font-size: 1.2rem;
-    color: #000000;
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    background-color: #FF6666;
     box-sizing: border-box;
 }
 
@@ -134,9 +141,47 @@ button:hover {
     background-color: #FF6666;
 }
 
+.navigation-btn:hover {
+    background-color: #ffffff;
+}
+
 button:disabled {
     background-color: #FF6666;
     cursor: not-allowed;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Shaking animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Apply the shake animation */
+.shake {
+    animation: shake 0.3s ease;
+}
+
+.answer-btn.selected {
+    color: #ffffff;
+    cursor: default;
 }
 
 #subscribeBtn {
@@ -170,11 +215,12 @@ button:disabled {
     }
 
     .question p {
-        font-size: 1rem;
+        font-size: 1.35rem;
     }
 
-    button {
-        font-size: 1rem;
+    .answer-btn {
+        font-size: 18px;
+        font-weight: 400;
     }
 }
 
@@ -187,5 +233,10 @@ button:disabled {
     button {
         width: 100%;
         margin-bottom: 10px;
+    }
+
+    .answer-btn {
+        font-size: 18px;
+        font-weight: 400;
     }
 }

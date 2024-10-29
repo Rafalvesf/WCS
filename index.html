@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WCS Project Quiz</title>
+    <link rel="icon" href="AltagenLogo-modified.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +13,9 @@
 <body>
     <div class="quiz-container">        
         <form id="quiz-form">
-            <div class="question active" id="question1">
+            <div class="question active" id="intro">
                 <p1>WCS PROJECT</p1>
-                <p>Your input will help us improve the product and offer better solutions for different types of users, including gamers, developers, and remote workers. The survey takes only a few minutes to complete, and your responses will remain confidential.</p>
+                <p>Your input will help us improve the project and offer better solutions for different types of users, including gamers, developers, and remote workers. The survey takes only a few minutes to complete, and your responses will remain confidential.</p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
@@ -22,22 +23,27 @@
             
             <div class="question" id="question2">
                 <p1>Question 1</p1>
-                <p>Age Group:</p>
+                <p>Select your Age group:</p>
                 <button type="button" class="answer-btn">18-24</button>
                 <button type="button" class="answer-btn">25-34</button>
                 <button type="button" class="answer-btn">35-44</button>
                 <button type="button" class="answer-btn">45-54</button>
                 <button type="button" class="answer-btn">55+</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
             </div>
-            
+
             <div class="question" id="question3">
                 <p1>Question 2</p1>
-                <p>Do you currently use any remote access software or hardware?</p>
-                <button type="button" class="answer-btn">Yes</button>
-                <button type="button" class="answer-btn">No</button>
+                <p>How interested are you in controlling your computer remotely using a mobile app?</p>
+                <button type="button" class="answer-btn">Very interested</button>
+                <button type="button" class="answer-btn">Somewhat interested</button>
+                <button type="button" class="answer-btn">Neutral</button>
+                <button type="button" class="answer-btn">Not very interested</button>
+                <button type="button" class="answer-btn">Not interested at all</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
@@ -45,12 +51,10 @@
             
             <div class="question" id="question4">
                 <p1>Question 3</p1>
-                <p>How interested are you in controlling your computer remotely using a mobile app?</p>
-                <button type="button" class="answer-btn">Very interested</button>
-                <button type="button" class="answer-btn">Somewhat interested</button>
-                <button type="button" class="answer-btn">Neutral</button>
-                <button type="button" class="answer-btn">Not very interested</button>
-                <button type="button" class="answer-btn">Not interested at all</button>
+                <p>Do you currently use any remote access software or hardware?</p>
+                <button type="button" class="answer-btn">Yes</button>
+                <button type="button" class="answer-btn">No</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
@@ -64,44 +68,50 @@
                 <button type="button" class="answer-btn">Neutral</button>
                 <button type="button" class="answer-btn">Not very important</button>
                 <button type="button" class="answer-btn">Not important at all</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
             </div>
-            
+
             <div class="question" id="question6">
-                <p1>Question 5</p1>
+            <p1>Question 5</p1>
+            <p>True or False: How much Carbon Dioxide (CO₂) do you think your computer can be producing in a Year? (in kg)</p>
+            <button type="button" class="answer-btn" onclick="checkAnswer(this, 'False')">~58 Kg</button>
+            <button type="button" class="answer-btn" onclick="checkAnswer(this, 'False')">~105 Kg</button>
+            <button type="button" class="answer-btn" onclick="checkAnswer(this, 'False')">~124 Kg</button>
+            <button type="button" class="answer-btn" onclick="checkAnswer(this, 'True')">~141 Kg</button>
+            <p class="feedbackMessage" id="feedbackMessage"></p>
+            <div class="navigation">
+                <button type="button" class="navigation-btn" id="nextBtn">Next</button>
+            </div>
+            </div>
+            
+            <div class="question" id="question7">
+                <p1>Question 6</p1>
                 <p>How convenient do you find the ability to turn your computer on/off remotely?</p>
                 <button type="button" class="answer-btn">Very convenient</button>
                 <button type="button" class="answer-btn">Somewhat convenient</button>
                 <button type="button" class="answer-btn">Neutral</button>
                 <button type="button" class="answer-btn">Not very convenient</button>
                 <button type="button" class="answer-btn">Not convenient at all</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
             </div>
+
             
-            <div class="question" id="question7">
-                <p1>Question 6</p1>
-                <p>The WCS is designed to be easy to install. How comfortable are you with installing hardware on your computer?</p>
+            
+            <div class="question" id="question8">
+                <p1>Question 7</p1>
+                <p>The WCS is designed to be easy to install. <br> How comfortable are you with installing hardware on your computer?</p>
                 <button type="button" class="answer-btn">Very comfortable</button>
                 <button type="button" class="answer-btn">Somewhat comfortable</button>
                 <button type="button" class="answer-btn">Neutral</button>
                 <button type="button" class="answer-btn">Not very comfortable</button>
                 <button type="button" class="answer-btn">Not comfortable at all</button>
-                <div class="navigation">
-                    <button type="button" class="navigation-btn" id="nextBtn">Next</button>
-                </div>
-            </div>
-            
-            <div class="question" id="question8">
-                <p1>Question 7</p1>
-                <p>The WCS is a paid hardware device. How much are you willing to pay for such a device?</p>
-                <button type="button" class="answer-btn">$10-$20</button>
-                <button type="button" class="answer-btn">$21-$30</button>
-                <button type="button" class="answer-btn">$31-$40</button>
-                <button type="button" class="answer-btn">$41-$50</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
@@ -109,48 +119,60 @@
             
             <div class="question" id="question9">
                 <p1>Question 8</p1>
+                <p>If the project was a paid hardware device. <br> How much would you be willing to pay?</p>
+                <button type="button" class="answer-btn">$10-$20</button>
+                <button type="button" class="answer-btn">$21-$30</button>
+                <button type="button" class="answer-btn">$31-$40</button>
+                <button type="button" class="answer-btn">$41-$50</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
+                <div class="navigation">
+                    <button type="button" class="navigation-btn" id="nextBtn">Next</button>
+                </div>
+            </div>
+
+            <div class="question" id="question10">
+                <p1>Question 9</p1>
                 <p>Do you find the features of the WCS useful for your daily life?</p>
                 <button type="button" class="answer-btn">Yes, very useful</button>
                 <button type="button" class="answer-btn">Somewhat useful</button>
                 <button type="button" class="answer-btn">Neutral</button>
                 <button type="button" class="answer-btn">Not very useful</button>
                 <button type="button" class="answer-btn">Not useful at all</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="nextBtn">Next</button>
                 </div>
             </div>
 
-             <div class="question" id="question10">
-                <p1>Question 9</p1>
+             <div class="question" id="question11">
+                <p1>Question 10</p1>
                 <p>How likely are you to recommend the WCS to friends or colleagues?</p>
                 <button type="button" class="answer-btn">Very likely</button>
                 <button type="button" class="answer-btn">Somewhat likely</button>
                 <button type="button" class="answer-btn">Neutral</button>
                 <button type="button" class="answer-btn">Not very likely</button>
                 <button type="button" class="answer-btn">Not likely at all</button>
+                <p class="feedbackMessage" id="feedbackMessage"></p>
                 <div class="navigation">
                     <button type="button" class="navigation-btn" id="finishBtn">Finish</button>
                 </div>
             </div>
-              
-            <!-- Email Sign-up Container -->
-            <!--<div class="question" id="question12">
-                <h2>Subscribe to our Newsletter</h2>
-                <p>Enter your email address to stay updated!</p>
-                <input type="email" name="Email" id="newsletterEmail" placeholder="Enter your email">
-                <div class="navigation" style="  display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    <button type="button" class="navigation-btn" id="subscribeBtn">Subscribe</button>
-                    <button type="button" class="navigation-btn" id="nextBtn">Next</button>
-                </div>
-            </div>  -->
 
-            <!-- Thank You Page -->
-             <div class="question" id="question13">
+             <div class="question" id="question12">
                 <h2>Thank you for completing the questionnaire!</h2>
                 <p>We appreciate your feedback.</p>
+                <!-- Social Media Icons -->
+                 <div class="social-icons">
+                    </a>
+                    <a href="https://www.linkedin.com/company/96970769/admin/dashboard/" target="_blank">
+                        <img src="linkedin.png" alt="Twitter" class="social-icon">
+                    </a>
+                    <a href="https://x.com/altagentek" target="_blank">
+                        <img src="twitter.png" alt="Instagram" class="social-icon">
+                    </a>
+                </div>
             </div>     
-    </body>
-</div>
+        </body>
+    </div>
     <script src="script.js"></script>
-    <script src="script1.js"></script>
 </html>

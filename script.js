@@ -76,7 +76,6 @@ function submitQuiz() {
     .then(response => response.text())
     .then(result => {
         console.log('Success:', result);
-        alert('Quiz completed and data sent to Google Sheets!');
         finishBtn.disabled = false; // Re-enable after successful submission
 
         // Show the email sign-up form after quiz submission
@@ -166,7 +165,6 @@ document.querySelectorAll('.navigation #nextBtn').forEach((btn) => {
 // Handle "Finish" button submission
 finishBtn?.addEventListener('click', () => {
     // You can add final submission logic here if needed
-    alert("");
 });
 
 // Add event listeners for selecting an answer
@@ -183,6 +181,14 @@ document.querySelectorAll('.answer-btn').forEach(button => {
         button.classList.add('selected');
     });
 });
+
+// Function to scroll by a minimal amount to trigger address bar collapse
+function hideAddressBar() {
+    window.scrollTo(0, 1);
+}
+
+// Run the function on load to hide the address bar
+window.addEventListener('load', hideAddressBar);
 
 // Calculate the viewport height and set the CSS variable
 function setViewportHeight() {
@@ -204,44 +210,6 @@ function setViewportHeight() {
 // Calculate on load and on resize
 window.addEventListener('load', setViewportHeight);
 window.addEventListener('resize', setViewportHeight);
-
-// Function to submit the email to Google Sheets
-function submitEmail() {
-    const formData = new URLSearchParams();
-    const email = newsletterEmail.value.trim();
-
-    if (email) {
-        // Add the email to formData
-        formData.append("newsletterEmail", email);
-
-        // Disable the Subscribe button to prevent multiple submissions
-        subscribeBtn.disabled = true;
-
-        fetch(googleSheetUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formData.toString() // Convert formData to proper encoding
-        })
-        .then(response => response.text())
-        .then(result => {
-            console.log('Success:', result);
-            alert('Subscription successful! Thank you for signing up.');
-            subscribeBtn.disabled = false; // Re-enable after successful submission
-
-            // Optionally, you can proceed to the thank you page or any other action
-            showThankYouPage(); // Show thank-you page after email submission
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("There was an issue with your subscription. Please try again.");
-            subscribeBtn.disabled = false;
-        });
-    } else {
-        alert("Please enter a valid email address.");
-    }
-}
 
 function showThankYouPage() {
     emailSignup.style.display = "none";

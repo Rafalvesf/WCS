@@ -184,6 +184,18 @@ document.querySelectorAll('.answer-btn').forEach(button => {
     });
 });
 
+// Calculate the viewport height and set the CSS variable
+function setViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Initial calculation
+setViewportHeight();
+
+// Recalculate on resize (when the address bar shows/hides)
+window.addEventListener('resize', setViewportHeight);
+
 
 // Function to submit the email to Google Sheets
 function submitEmail() {

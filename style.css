@@ -18,9 +18,11 @@ body, html {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-    width: 85%;
-    max-width: 450px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 1600px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 h2 {
@@ -137,6 +139,14 @@ button {
     transition: background-color 0.3s ease;
 }
 
+.logo {
+    width: 50px;  /* Adjust as needed */
+    height: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;  /* Ensures the image scales properly inside the circle */
+}
+
+
 button:hover {
     background-color: #FF6666;
 }
@@ -205,9 +215,39 @@ button:disabled {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
+
     .quiz-container {
         padding: 25px;
+        height: auto;
+        width: auto;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .question p {
+        font-size: 1.35rem;
+    }
+
+    .answer-btn {
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+/* Use the calculated viewport height instead of 100vh */
+.full-height {
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+@media (max-height: 1000px) {
+
+    .quiz-container {
+        padding: 25px;
+        height: auto;
+        width: auto;
     }
 
     h2 {
@@ -225,6 +265,14 @@ button:disabled {
 }
 
 @media (max-width: 480px) {
+
+    .quiz-container {
+        padding: 25px;
+        height: auto;
+        width: auto;
+        margin-bottom: 75px;
+    }
+
     .navigation {
         flex-direction: column;
         align-items: center;

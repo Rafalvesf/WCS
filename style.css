@@ -16,6 +16,7 @@ body, html {
 .quiz-container {
     background-color: #211A1D;
     border-radius: 8px;
+    padding: 25px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     width: 90%;
     max-width: 500px;
@@ -246,7 +247,7 @@ button:disabled {
 @media (max-height: 800px) {
 
     .quiz-container {
-        padding-top: 32px;
+        padding-top: 35px;
         padding: 25px;
         height: auto;
         width: auto;

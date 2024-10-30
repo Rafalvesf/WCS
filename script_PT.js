@@ -191,6 +191,13 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
+// Event listener for the "Finish" button to complete the questionnaire
+finishBtn.addEventListener('click', () => {
+    // Mark the questionnaire as completed in local storage
+    localStorage.setItem('questionnaireCompleted', 'true');
+    // Optionally submit the form here
+});
+
 // Check if the questionnaire has already been completed
 function checkIfCompleted() {
     const completed = localStorage.getItem('questionnaireCompleted');
@@ -200,13 +207,6 @@ function checkIfCompleted() {
     }
     return false;
 }
-
-// Event listener for the "Finish" button to complete the questionnaire
-finishBtn.addEventListener('click', () => {
-    // Mark the questionnaire as completed in local storage
-    localStorage.setItem('questionnaireCompleted', 'true');
-    // Optionally submit the form here
-});
 
 // Initialize the first question if the questionnaire hasn't been completed
 if (!checkIfCompleted()) {

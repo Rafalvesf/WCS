@@ -191,6 +191,13 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
+// Event listener for the "Finish" button to complete the questionnaire
+finishBtn.addEventListener('click', () => {
+    // Mark the questionnaire as completed in local storage
+    localStorage.setItem('questionnaireCompleted', 'true');
+    // Optionally submit the form here
+});
+
 // Check if the questionnaire has already been completed
 function checkIfCompleted() {
     const completed = localStorage.getItem('questionnaireCompleted');
@@ -200,13 +207,6 @@ function checkIfCompleted() {
     }
     return false;
 }
-
-// Event listener for the "Finish" button to complete the questionnaire
-finishBtn.addEventListener('click', () => {
-    // Mark the questionnaire as completed in local storage
-    localStorage.setItem('questionnaireCompleted', 'true');
-    // Optionally submit the form here
-});
 
 // Initialize the first question if the questionnaire hasn't been completed
 if (!checkIfCompleted()) {
@@ -228,13 +228,5 @@ function setViewportHeight() {
 window.addEventListener('load', setViewportHeight);
 window.addEventListener('resize', setViewportHeight);
 
-function showThankYouPage() {
-    emailSignup.style.display = "none";
-    thankYouPage.style.display = "block";
-}
-
 // Modify the finish button click to call submitQuiz
 finishBtn.addEventListener('click', submitQuiz);
-
-// Subscribe button handler to send only the email address
-subscribeBtn.addEventListener('click', subscribeNewsletter);

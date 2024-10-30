@@ -198,7 +198,7 @@ function checkIfCompleted() {
         document.body.innerHTML = `
             <div class="completion-message">
                 <h2>Obrigado!</h2>
-                <p>Você já completou este questionário em Português ou Inglês. <br> Agradeço a sua participação!</p>
+                <p>Você já completou este questionário em Português ou Inglês. <br>Agradeço a sua participação!</p>
             </div>`;
         return true;
     }

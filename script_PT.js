@@ -195,7 +195,11 @@ function setViewportHeight() {
 function checkIfCompleted() {
     const completed = localStorage.getItem('questionnaireCompleted');
     if (completed) {
-        document.body.innerHTML = '<p>Já respondeu a este questionário em Português ou Inglês. Obrigado!</p>';
+        document.body.innerHTML = `
+            <div class="completion-message">
+                <h2>Obrigado!</h2>
+                <p>Você já completou este questionário em Português ou Inglês. Agradecemos a sua participação!</p>
+            </div>`;
         return true;
     }
     return false;

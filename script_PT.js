@@ -191,27 +191,32 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Event listener for the "Finish" button to complete the questionnaire
-finishBtn.addEventListener('click', () => {
-    // Mark the questionnaire as completed in local storage
-    localStorage.setItem('questionnaireCompleted', 'true');
-    // Optionally submit the form here
-});
-
 // Check if the questionnaire has already been completed
 function checkIfCompleted() {
     const completed = localStorage.getItem('questionnaireCompleted');
     if (completed) {
-        feedbackMessage.textContent = "Já respondeu a este questionário. Obrigado novamente!";
+        document.body.innerHTML = '<p>Já respondeu a este questionário. Obrigado!</p>';
         return true;
     }
     return false;
 }
 
-// Initialize the first question if the questionnaire hasn't been completed
-if (!checkIfCompleted()) {
-    showQuestion(currentQuestionIndex);
+// Mark questionnaire as completed and store it in localStorage
+function markAsCompleted() {
+    localStorage.setItem('questionnaireCompleted', 'true');
 }
+
+// Modify the finish button event to include the localStorage logic
+finishBtn.addEventListener('click', () => {
+    markAsCompleted();  // Store completion status
+    submitQuiz();       // Call the existing quiz submission function
+});
+
+// Initialize the questionnaire only if it hasn't been completed
+if (!checkIfCompleted()) {
+    showQuestion(currentQuestionIndex);  // Start questionnaire
+}
+
 
 // Initial calculation
 setViewportHeight();

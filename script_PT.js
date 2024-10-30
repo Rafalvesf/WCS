@@ -191,17 +191,17 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Check if the questionnaire has already been completed
+// Check if the questionnaire has already been completed (in any language)
 function checkIfCompleted() {
     const completed = localStorage.getItem('questionnaireCompleted');
     if (completed) {
-        document.body.innerHTML = '<p>Já respondeu a este questionário. Obrigado!</p>';
+        document.body.innerHTML = '<p>Já respondeu a este questionário em Português ou Inglês. Obrigado!</p>';
         return true;
     }
     return false;
 }
 
-// Mark questionnaire as completed and store it in localStorage
+// Mark questionnaire as completed and store it in localStorage (applies to both languages)
 function markAsCompleted() {
     localStorage.setItem('questionnaireCompleted', 'true');
 }

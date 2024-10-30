@@ -198,7 +198,7 @@ function checkIfCompleted() {
         document.body.innerHTML = `
             <div class="completion-message">
                 <h2>Thank you!</h2>
-                <p>You have already completed this questionnaire in either English or Portuguese. Appreciate your participation!</p>
+                <p>You have already completed this questionnaire in either English or Portuguese. <br> Appreciate your participation!</p>
             </div>`;;
         return true;
     }
